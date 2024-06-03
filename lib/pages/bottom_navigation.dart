@@ -14,7 +14,7 @@ class BottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ValueNotifier<int> index = ValueNotifier<int>(0);
+    ValueNotifier<int> index = ValueNotifier<int>(2);
     const List<Widget> widgetList = [
       HomePage(),
       TodoPage(),

@@ -21,6 +21,7 @@ class LoginPage extends StatelessWidget {
     final TextEditingController passController = TextEditingController();
     ValueNotifier<bool> obscure = ValueNotifier<bool>(true);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.all(18.0),
         child: SizedBox(

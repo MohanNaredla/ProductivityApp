@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:productivity/pages/splash_screen.dart';
 import 'package:productivity/providers/task_provider.dart';
+import 'package:productivity/providers/timer_provider.dart';
 import 'package:productivity/utils/constants/colors.dart';
 import "package:provider/provider.dart";
 
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => TaskProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => TimerProvider(),
         ),
       ],
       child: MaterialApp(

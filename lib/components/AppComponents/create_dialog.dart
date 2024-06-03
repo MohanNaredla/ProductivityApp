@@ -3,7 +3,6 @@ import 'package:productivity/components/AppComponents/button.dart';
 import 'package:productivity/components/LoginComponents/input_field.dart';
 import 'package:productivity/providers/task_provider.dart';
 
-import 'package:productivity/utils/device/device_utils.dart';
 import 'package:provider/provider.dart';
 
 class CreateDialog extends StatelessWidget {
@@ -15,16 +14,16 @@ class CreateDialog extends StatelessWidget {
     return Consumer<TaskProvider>(
       builder: (context, taskProvider, child) => AlertDialog(
         backgroundColor: Colors.grey.shade400,
-        content: Container(
-          padding:
-              const EdgeInsets.only(top: 18, left: 10, right: 10, bottom: 12),
-          height: DeviceUtils.getHeight(context) * 0.157,
-          width: DeviceUtils.getWidth(context) * 0.7,
-          decoration: const BoxDecoration(),
+        content: Padding(
+          padding: const EdgeInsets.only(
+            top: 24.0,
+            bottom: 24,
+          ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: const EdgeInsets.only(bottom: 18),
+                padding: const EdgeInsets.only(bottom: 38),
                 child: InputField(
                   hint: "Enter Task Name",
                   controller: createController,
