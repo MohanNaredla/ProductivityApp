@@ -13,6 +13,9 @@ class CreateDialog extends StatelessWidget {
     final TextEditingController createController = TextEditingController();
     return Consumer<TaskProvider>(
       builder: (context, taskProvider, child) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(7),
+        ),
         backgroundColor: Colors.grey.shade400,
         content: Padding(
           padding: const EdgeInsets.only(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:productivity/components/AppComponents/empty_text.dart';
 
 class EmptyTasks extends StatelessWidget {
   const EmptyTasks({super.key});
@@ -7,18 +8,8 @@ class EmptyTasks extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.transparent,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 104),
-        child: Center(
-          child: Text(
-            "Get Started By Creating a Task By Clicking on The Button Below",
-            textAlign: TextAlign.center,
-            softWrap: true,
-            style: TextStyle(
-              fontSize: 18,
-            ),
-          ),
-        ),
+      body: EmptyText(
+        text: "Get Started By Creating a Task By Clicking on The Button Below",
       ),
     );
   }

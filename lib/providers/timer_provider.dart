@@ -9,19 +9,16 @@ class TimerProvider with ChangeNotifier {
     microseconds: 0,
     milliseconds: 0,
   );
-  Duration? remainingTime;
+  Duration remainingTime = Duration.zero;
   Timer? timer;
-
-  TimerProvider() {
-    remainingTime = Duration.zero;
-  }
+  int cycles = 1;
 
   void startTimer() {
     timer = Timer.periodic(
       const Duration(seconds: 1),
       (timer) {
-        if (remainingTime!.inSeconds < totalTime.inSeconds) {
-          remainingTime = Duration(seconds: remainingTime!.inSeconds + 1);
+        if (remainingTime.inSeconds > 0) {
+          remainingTime = Duration(seconds: remainingTime.inSeconds - 1);
           notifyListeners();
         } else {
           timer.cancel();
@@ -36,18 +33,29 @@ class TimerProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  double getPercentage() {
-    return (remainingTime!.inSeconds / totalTime.inSeconds);
-  }
-
   void updateDefaultTime(Duration min, Duration sec) {
-    totalTime = Duration(minutes: min.inMinutes, seconds: sec.inSeconds);
+    if (min.inMinutes > 0 && sec.inSeconds >= 0) {
+      totalTime = Duration(minutes: min.inMinutes, seconds: sec.inSeconds);
+      remainingTime = totalTime;
+    }
     notifyListeners();
   }
 
-  Widget returnCenterText() {
-    return Text(
-        "${totalTime.inMinutes} : ${(totalTime.inSeconds % 60).toString().padLeft(2, '0')}");
+  void updateCycleCount(int val) {
+    val > 0 ? cycles = val : cycles = 1;
+    notifyListeners();
+  }
+
+  double getPercentage() {
+    return (remainingTime.inSeconds / totalTime.inSeconds);
+  }
+
+  String returnCenterText() {
+    return "${remainingTime.inMinutes.toString().padLeft(2, '0')}:${(remainingTime.inSeconds % 60).toString().padLeft(2, '0')}";
+  }
+
+  Duration getDefaultTime() {
+    return totalTime;
   }
 
   @override

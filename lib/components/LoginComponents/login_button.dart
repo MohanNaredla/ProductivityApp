@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 import 'package:productivity/pages/bottom_navigation.dart';
 import 'package:productivity/utils/device/device_utils.dart';
-import 'package:productivity/utils/helper_functions/custom_page_route.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key});
@@ -12,8 +12,11 @@ class LoginButton extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.of(context).pushReplacement(
-          CustomPageRoute(
-            page: const BottomNavigation(),
+          PageTransition(
+            child: const BottomNavigation(),
+            type: PageTransitionType.rightToLeftWithFade,
+            duration: const Duration(milliseconds: 500),
+            reverseDuration: const Duration(milliseconds: 300),
           ),
         );
       },
