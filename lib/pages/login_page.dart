@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,16 @@ class LoginPage extends StatelessWidget {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passController = TextEditingController();
     ValueNotifier<bool> obscure = ValueNotifier<bool>(true);
+
+    void onClicked() async {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passController.text,
+      );
+    }
+
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.all(18.0),
         child: SizedBox(
@@ -68,7 +78,9 @@ class LoginPage extends StatelessWidget {
               ),
               const ForgotPassword(),
               AddSize.addVertical(Sizes.space_between_items_lg),
-              const LoginButton(),
+              LoginButton(
+                onClicked: onClicked,
+              ),
               AddSize.addVertical(55.0),
               const Seperator(),
               AddSize.addVertical(40.0),

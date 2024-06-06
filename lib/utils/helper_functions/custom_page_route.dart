@@ -12,8 +12,8 @@ class CustomPageRoute extends PageRouteBuilder {
               child: child,
             );
           },
-          transitionDuration: const Duration(milliseconds: 20),
-          reverseTransitionDuration: const Duration(milliseconds: 0),
+          transitionDuration: const Duration(milliseconds: 350),
+          reverseTransitionDuration: const Duration(milliseconds: 100),
         );
 
   @override
