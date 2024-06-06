@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iconsax/iconsax.dart';
@@ -14,7 +13,7 @@ class BottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ValueNotifier<int> index = ValueNotifier<int>(2);
+    ValueNotifier<int> index = ValueNotifier<int>(0);
     const List<Widget> widgetList = [
       HomePage(),
       TodoPage(),
@@ -22,11 +21,10 @@ class BottomNavigation extends StatelessWidget {
       SettingsPage()
     ];
     return Scaffold(
-      backgroundColor: Colors.transparent,
       bottomNavigationBar: Container(
         padding: const EdgeInsets.fromLTRB(24, 14, 14, 28),
         decoration: const BoxDecoration(
-          color: Color.fromRGBO(255, 255, 255, 0.9),
+          color: Color.fromRGBO(228, 228, 228, 1),
         ),
         child: ValueListenableBuilder(
           valueListenable: index,

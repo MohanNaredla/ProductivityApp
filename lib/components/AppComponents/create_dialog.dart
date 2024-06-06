@@ -20,7 +20,7 @@ class CreateDialog extends StatelessWidget {
         content: Padding(
           padding: const EdgeInsets.only(
             top: 24.0,
-            bottom: 24,
+            bottom: 0.0,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,

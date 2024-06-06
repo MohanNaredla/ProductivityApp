@@ -6,11 +6,8 @@ class EmptyTasks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.transparent,
-      body: EmptyText(
-        text: "Get Started By Creating a Task By Clicking on The Button Below",
-      ),
+    return const EmptyText(
+      text: "Get Started By Creating a Task By Clicking on The Button Below",
     );
   }
 }

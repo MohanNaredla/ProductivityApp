@@ -56,7 +56,9 @@ class _MyWidgetState extends State<SelectTime> {
                       initialItem: 25,
                     ),
                     onSelectedItemChanged: (value) {
-                      minPicker = Duration(minutes: value);
+                      value >= 0 && value != 25
+                          ? minPicker = Duration(minutes: value)
+                          : null;
                     },
                     itemBuilder: (context, index) => Center(
                       child: index < 10
@@ -137,7 +139,6 @@ class _MyWidgetState extends State<SelectTime> {
                     context: context,
                     builder: (_) => const SelectCycles(),
                   );
-                  print(timerProvider.getDefaultTime());
                 },
               ),
             ),

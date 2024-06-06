@@ -12,6 +12,7 @@ class TimerProvider with ChangeNotifier {
   Duration remainingTime = Duration.zero;
   Timer? timer;
   int cycles = 1;
+  bool isCompleted = false;
 
   void startTimer() {
     timer = Timer.periodic(
@@ -37,8 +38,8 @@ class TimerProvider with ChangeNotifier {
     if (min.inMinutes > 0 && sec.inSeconds >= 0) {
       totalTime = Duration(minutes: min.inMinutes, seconds: sec.inSeconds);
       remainingTime = totalTime;
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   void updateCycleCount(int val) {
@@ -46,7 +47,19 @@ class TimerProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  double getPercentage() {
+  void checkCompleted() {
+    timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) {
+        if (remainingTime.inSeconds / totalTime.inSeconds == 0) {
+          isCompleted = true;
+          notifyListeners();
+        }
+      },
+    );
+  }
+
+  double returnPercentage() {
     return (remainingTime.inSeconds / totalTime.inSeconds);
   }
 

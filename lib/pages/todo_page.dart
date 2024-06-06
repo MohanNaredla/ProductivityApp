@@ -40,7 +40,7 @@ class _TodoPageState extends State<TodoPage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 30),
+        padding: const EdgeInsets.only(top: 0),
         child: Consumer<TaskProvider>(
           builder: (_, taskProvider, child) => taskProvider.tasks.isEmpty
               ? const EmptyTasks()

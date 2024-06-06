@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
+
 import 'package:hive_flutter/hive_flutter.dart';
+import "package:provider/provider.dart";
+import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:productivity/pages/splash_screen.dart';
 import 'package:productivity/providers/task_provider.dart';
 import 'package:productivity/providers/timer_provider.dart';
 import 'package:productivity/utils/constants/colors.dart';
-import "package:provider/provider.dart";
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  //Init Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   //Init Hive
   await Hive.initFlutter();
+
   //Open Hive Box
+  // ignore: unused_local_variable
   var box = Hive.openBox("TodoBox");
 
   runApp(

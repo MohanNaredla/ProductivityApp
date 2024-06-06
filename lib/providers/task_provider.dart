@@ -21,6 +21,8 @@ class TaskProvider with ChangeNotifier {
 
   void toggleCompletion(int index) {
     _tasks[index][1] = !_tasks[index][1];
+    final List list = _tasks.removeAt(index);
+    _tasks.add(list);
     db.updateTasks(_tasks);
     notifyListeners();
   }

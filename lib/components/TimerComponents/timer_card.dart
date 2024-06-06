@@ -67,7 +67,7 @@ class _TimerCardState extends State<TimerCard> {
                           ),
                           lineWidth: 20,
                           circularStrokeCap: CircularStrokeCap.round,
-                          percent: value.getPercentage(),
+                          percent: value.returnPercentage(),
                         ),
                       )
                     ],

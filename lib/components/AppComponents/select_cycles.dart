@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:productivity/components/AppComponents/button.dart';
-import 'package:productivity/pages/FallBackPages/work_timer.dart';
+import 'package:productivity/pages/pomodoro_timer.dart';
 import 'package:productivity/providers/timer_provider.dart';
 import 'package:productivity/utils/device/device_utils.dart';
 import 'package:productivity/utils/helper_functions/custom_page_route.dart';
@@ -61,10 +62,11 @@ class _SelectCyclesState extends State<SelectCycles> {
                 text: "Start Timer",
                 onPressed: () {
                   value.updateCycleCount(cycles);
+                  value.checkCompleted();
                   Navigator.of(context).pop();
                   Navigator.of(context).pushReplacement(
                     CustomPageRoute(
-                      page: const WorkTimer(),
+                      page: const PomodoroTimer(),
                     ),
                   );
                   Future.delayed(

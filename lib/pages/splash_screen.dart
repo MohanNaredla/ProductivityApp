@@ -1,7 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:productivity/pages/login_page.dart';
+
+import 'package:productivity/pages/auth_page.dart';
 import 'package:productivity/utils/helper_functions/custom_page_route.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen>
       () {
         Navigator.of(context).pushReplacement(
           CustomPageRoute(
-            page: const LoginPage(),
+            page: const AuthPage(),
           ),
         );
       },

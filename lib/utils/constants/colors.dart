@@ -17,6 +17,6 @@ class AppColors {
   static const Color error = Color(0xFFB00020);
 
   //Input Field and Container Colors
-  static const Color input_light = Color.fromRGBO(224, 224, 224, 1);
+  static const Color input_light = Color.fromRGBO(218, 218, 218, 1);
   static const Color progressColor = Color(0xFFE37108);
 }

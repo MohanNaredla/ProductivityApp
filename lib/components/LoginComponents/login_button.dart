@@ -1,25 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 
-import 'package:productivity/pages/bottom_navigation.dart';
 import 'package:productivity/utils/device/device_utils.dart';
 
 class LoginButton extends StatelessWidget {
-  const LoginButton({super.key});
+  const LoginButton({
+    super.key,
+    required this.onClicked,
+  });
+
+  final Function() onClicked;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.of(context).pushReplacement(
-          PageTransition(
-            child: const BottomNavigation(),
-            type: PageTransitionType.rightToLeftWithFade,
-            duration: const Duration(milliseconds: 500),
-            reverseDuration: const Duration(milliseconds: 300),
-          ),
-        );
-      },
+      onTap: onClicked,
       child: Container(
         height: 60,
         width: DeviceUtils.getWidth(context) * 0.85,
