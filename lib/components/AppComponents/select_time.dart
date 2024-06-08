@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:productivity/components/AppComponents/button.dart';
-import 'package:productivity/components/AppComponents/select_cycles.dart';
+import 'package:productivity/pages/pomodoro_timer.dart';
 import 'package:productivity/providers/timer_provider.dart';
 import 'package:productivity/utils/device/device_utils.dart';
-import 'package:provider/provider.dart';
 
 class SelectTime extends StatefulWidget {
   const SelectTime({super.key});
@@ -134,11 +134,12 @@ class _MyWidgetState extends State<SelectTime> {
                 onPressed: () {
                   timerProvider.updateDefaultTime(minPicker, secPicker);
                   Navigator.of(context).pop();
-                  showCupertinoDialog(
-                    barrierDismissible: true,
-                    context: context,
-                    builder: (_) => const SelectCycles(),
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => const PomodoroTimer(),
+                    ),
                   );
+                  timerProvider.startTimer();
                 },
               ),
             ),

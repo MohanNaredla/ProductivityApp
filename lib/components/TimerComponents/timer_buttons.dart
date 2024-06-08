@@ -6,10 +6,14 @@ class TimerButtons extends StatelessWidget {
     super.key,
     required this.text1,
     required this.text2,
+    required this.topColor,
+    required this.bottomColor,
   });
 
   final String text1;
   final String text2;
+  final Color topColor;
+  final Color bottomColor;
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +23,9 @@ class TimerButtons extends StatelessWidget {
         children: [
           ElevatedButton(
             onPressed: () {},
-            style: const ButtonStyle(
+            style: ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(
-                Color(0xFFFF9B3F),
+                topColor,
               ),
             ),
             child: Padding(
@@ -40,8 +44,8 @@ class TimerButtons extends StatelessWidget {
           ElevatedButton(
             onPressed: () {},
             style: ButtonStyle(
-              backgroundColor: const WidgetStatePropertyAll(
-                Color(0xFFFFDBB9),
+              backgroundColor: WidgetStatePropertyAll(
+                bottomColor,
               ),
               shape: WidgetStatePropertyAll(
                 RoundedRectangleBorder(

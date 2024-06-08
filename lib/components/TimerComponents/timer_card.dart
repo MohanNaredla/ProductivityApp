@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
+
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:productivity/providers/timer_provider.dart';
-import 'package:productivity/utils/constants/colors.dart';
 import 'package:productivity/utils/helper_functions/add_size.dart';
-import 'package:provider/provider.dart';
 
 class TimerCard extends StatefulWidget {
-  const TimerCard({super.key});
+  const TimerCard({
+    super.key,
+    required this.text,
+    required this.cardColor,
+    required this.progressColor,
+    required this.progressBackground,
+    required this.centerText,
+    required this.percentage,
+  });
+
+  final String text;
+  final String centerText;
+  final double percentage;
+  final Color cardColor;
+  final Color progressColor;
+  final Color progressBackground;
 
   @override
   State<TimerCard> createState() => _TimerCardState();
@@ -25,50 +38,45 @@ class _TimerCardState extends State<TimerCard> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Card(
-              color: const Color(0xFFEAB07A),
+              color: widget.cardColor,
               elevation: 8,
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Color(0xFFEAB07A),
+                  color: widget.cardColor,
                   borderRadius: BorderRadius.circular(14),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(57, 20, 57, 30),
                   child: Column(
                     children: [
-                      const Text(
-                        "Work Timer",
-                        style: TextStyle(
+                      Text(
+                        widget.text,
+                        style: const TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       AddSize.addVertical(50.0),
-                      Consumer<TimerProvider>(
-                        builder: (context, value, child) =>
-                            CircularPercentIndicator(
-                          center: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text("Time Left:"),
-                              Text(
-                                value.returnCenterText(),
-                                style: const TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                      CircularPercentIndicator(
+                        center: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text("Time Left:"),
+                            Text(
+                              widget.centerText,
+                              style: const TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w700,
                               ),
-                            ],
-                          ),
-                          radius: 120,
-                          progressColor: AppColors.progressColor,
-                          backgroundColor: AppColors.progressColor.withOpacity(
-                            0.4,
-                          ),
-                          lineWidth: 20,
-                          circularStrokeCap: CircularStrokeCap.round,
-                          percent: value.returnPercentage(),
+                            ),
+                          ],
                         ),
+                        radius: 120,
+                        progressColor: widget.progressColor,
+                        backgroundColor: widget.progressBackground,
+                        lineWidth: 20,
+                        circularStrokeCap: CircularStrokeCap.round,
+                        percent: widget.percentage,
                       )
                     ],
                   ),

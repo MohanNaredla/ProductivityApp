@@ -19,4 +19,5 @@ class AppColors {
   //Input Field and Container Colors
   static const Color input_light = Color.fromRGBO(218, 218, 218, 1);
   static const Color progressColor = Color(0xFFE37108);
+  static const Color progressColorBreak = Color(0xFF0775E2);
 }

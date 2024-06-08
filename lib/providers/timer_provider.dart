@@ -3,16 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class TimerProvider with ChangeNotifier {
-  Duration totalTime = const Duration(
-    minutes: 25,
-    seconds: 0,
-    microseconds: 0,
-    milliseconds: 0,
-  );
+  Duration totalTime = const Duration(minutes: 25, seconds: 0);
   Duration remainingTime = Duration.zero;
+  Duration remainingBreakTime = Duration.zero;
+  Duration totalBreakTime = const Duration(minutes: 10);
   Timer? timer;
-  int cycles = 1;
-  bool isCompleted = false;
+  bool isWorkCompleted = false;
+  bool isBreakCompleted = false;
 
   void startTimer() {
     timer = Timer.periodic(
@@ -22,6 +19,24 @@ class TimerProvider with ChangeNotifier {
           remainingTime = Duration(seconds: remainingTime.inSeconds - 1);
           notifyListeners();
         } else {
+          timer.cancel();
+        }
+      },
+    );
+  }
+
+  void startBreakTimer() {
+    remainingBreakTime = totalBreakTime;
+    timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (timer) {
+        if (remainingBreakTime.inSeconds > 0) {
+          remainingBreakTime =
+              Duration(seconds: remainingBreakTime.inSeconds - 1);
+          notifyListeners();
+        } else {
+          isBreakCompleted = true;
+          notifyListeners();
           timer.cancel();
         }
       },
@@ -39,24 +54,11 @@ class TimerProvider with ChangeNotifier {
       totalTime = Duration(minutes: min.inMinutes, seconds: sec.inSeconds);
       remainingTime = totalTime;
       notifyListeners();
+    } else if (min.inMinutes == 0 && sec.inSeconds >= 0) {
+      totalTime = Duration(minutes: 0, seconds: sec.inSeconds);
+      remainingTime = totalTime;
+      notifyListeners();
     }
-  }
-
-  void updateCycleCount(int val) {
-    val > 0 ? cycles = val : cycles = 1;
-    notifyListeners();
-  }
-
-  void checkCompleted() {
-    timer = Timer.periodic(
-      const Duration(seconds: 1),
-      (timer) {
-        if (remainingTime.inSeconds / totalTime.inSeconds == 0) {
-          isCompleted = true;
-          notifyListeners();
-        }
-      },
-    );
   }
 
   double returnPercentage() {
@@ -65,6 +67,14 @@ class TimerProvider with ChangeNotifier {
 
   String returnCenterText() {
     return "${remainingTime.inMinutes.toString().padLeft(2, '0')}:${(remainingTime.inSeconds % 60).toString().padLeft(2, '0')}";
+  }
+
+  double returnBreakPercentage() {
+    return (remainingBreakTime.inSeconds / totalBreakTime.inSeconds);
+  }
+
+  String returnBreakCenterText() {
+    return "${remainingBreakTime.inMinutes.toString().padLeft(2, '0')}:${(remainingBreakTime.inSeconds % 60).toString().padLeft(2, '0')}";
   }
 
   Duration getDefaultTime() {
