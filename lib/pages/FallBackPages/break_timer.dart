@@ -18,6 +18,13 @@ class BreakTimer extends StatefulWidget {
 
 class _BreakTimerState extends State<BreakTimer> {
   @override
+  void initState() {
+    final provider = Provider.of<TimerProvider>(context, listen: false);
+    provider.startBreakTimer();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFB9DCFF),

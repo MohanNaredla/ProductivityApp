@@ -24,7 +24,7 @@ class BottomNavigation extends StatelessWidget {
       bottomNavigationBar: Container(
         padding: const EdgeInsets.fromLTRB(24, 14, 14, 28),
         decoration: const BoxDecoration(
-          color: Color.fromRGBO(228, 228, 228, 1),
+          color: Color.fromRGBO(255, 255, 255, 1),
         ),
         child: ValueListenableBuilder(
           valueListenable: index,

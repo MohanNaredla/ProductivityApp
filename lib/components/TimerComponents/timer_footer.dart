@@ -23,7 +23,7 @@ class TimerFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
+      width: double.maxFinite,
       child: Column(
         children: [
           Card(

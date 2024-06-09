@@ -1,8 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:productivity/components/AppComponents/app_bar_title.dart';
 import 'package:productivity/components/AppComponents/empty_text.dart';
 import 'package:productivity/components/AppComponents/select_time.dart';
+import 'package:productivity/utils/constants/colors.dart';
 
 class TimerPage extends StatefulWidget {
   const TimerPage({super.key});
@@ -13,7 +16,18 @@ class TimerPage extends StatefulWidget {
 
 class _TimerPageState extends State<TimerPage> {
   void createDialog() {
-    showCupertinoModalPopup(
+    showModalBottomSheet(
+      backgroundColor: AppColors.background_light,
+      sheetAnimationStyle: AnimationStyle(
+        duration: const Duration(
+          milliseconds: 500,
+        ),
+        reverseDuration: const Duration(
+          milliseconds: 500,
+        ),
+        curve: Curves.easeIn,
+        reverseCurve: Curves.easeOut,
+      ),
       context: context,
       builder: (_) => const SelectTime(),
     );
@@ -23,16 +37,7 @@ class _TimerPageState extends State<TimerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Padding(
-          padding: EdgeInsets.only(top: 14),
-          child: Text(
-            "Timer",
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 32,
-            ),
-          ),
-        ),
+        title: const AppBarTitle(title: "Timer"),
       ),
       body: const EmptyText(
         text: "Get Started By Creating a Timer By Clicking on The Button Below",

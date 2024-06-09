@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:productivity/utils/helper_functions/custom_page_route.dart';
 import 'package:provider/provider.dart';
 
 import 'package:productivity/components/AppComponents/button.dart';
@@ -135,8 +136,8 @@ class _MyWidgetState extends State<SelectTime> {
                   timerProvider.updateDefaultTime(minPicker, secPicker);
                   Navigator.of(context).pop();
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => const PomodoroTimer(),
+                    CustomPageRoute(
+                      page: const PomodoroTimer(),
                     ),
                   );
                   timerProvider.startTimer();

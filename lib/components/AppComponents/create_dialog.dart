@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:productivity/components/AppComponents/button.dart';
 import 'package:productivity/components/LoginComponents/input_field.dart';
 import 'package:productivity/providers/task_provider.dart';
-
-import 'package:provider/provider.dart';
+import 'package:productivity/utils/constants/colors.dart';
 
 class CreateDialog extends StatelessWidget {
   const CreateDialog({super.key});
@@ -16,7 +17,7 @@ class CreateDialog extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(7),
         ),
-        backgroundColor: Colors.grey.shade400,
+        backgroundColor: AppColors.background_light,
         content: Padding(
           padding: const EdgeInsets.only(
             top: 24.0,
@@ -26,7 +27,9 @@ class CreateDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: const EdgeInsets.only(bottom: 38),
+                padding: const EdgeInsets.only(
+                  bottom: 38,
+                ),
                 child: InputField(
                   hint: "Enter Task Name",
                   controller: createController,

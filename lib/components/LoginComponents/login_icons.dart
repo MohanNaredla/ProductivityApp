@@ -11,6 +11,7 @@ class LoginIcons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         InkWell(
+          splashColor: AppColors.background_light,
           onTap: () => GoogleAuth().signInWithGoogle(),
           child: Container(
             margin: const EdgeInsets.only(right: 14),
@@ -29,6 +30,7 @@ class LoginIcons extends StatelessWidget {
           ),
         ),
         InkWell(
+          splashColor: AppColors.background_light,
           onTap: () => GoogleAuth().signInWithGit(),
           child: Container(
             decoration: BoxDecoration(
