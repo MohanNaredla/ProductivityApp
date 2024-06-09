@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:productivity/utils/helper_functions/custom_page_route.dart';
 import 'package:provider/provider.dart';
 
@@ -60,6 +61,7 @@ class _MyWidgetState extends State<SelectTime> {
                       value >= 0 && value != 25
                           ? minPicker = Duration(minutes: value)
                           : null;
+                      minPicker = Duration(minutes: value);
                     },
                     itemBuilder: (context, index) => Center(
                       child: index < 10
@@ -135,6 +137,7 @@ class _MyWidgetState extends State<SelectTime> {
                 onPressed: () {
                   timerProvider.updateDefaultTime(minPicker, secPicker);
                   Navigator.of(context).pop();
+
                   Navigator.of(context).pushReplacement(
                     CustomPageRoute(
                       page: const PomodoroTimer(),
